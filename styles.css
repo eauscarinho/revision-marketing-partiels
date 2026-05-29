@@ -139,6 +139,30 @@ button {
   line-height: 1.65;
 }
 
+.creator-note {
+  max-width: 660px;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 14px 16px;
+  color: #334155;
+  line-height: 1.55;
+  box-shadow: var(--shadow);
+}
+
+.creator-note a,
+.site-footer a {
+  color: var(--teal);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.creator-note a:hover,
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
 .hero-actions,
 .game-actions {
   display: flex;
@@ -841,6 +865,25 @@ button:disabled {
   margin-top: 6px;
 }
 
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding: 24px 0 34px;
+  color: var(--muted);
+}
+
+.site-footer strong,
+.site-footer span {
+  display: block;
+}
+
+.site-footer strong {
+  color: var(--ink);
+}
+
 .hidden {
   display: none !important;
 }
@@ -943,5 +986,10 @@ button:disabled {
 
   .session-row span {
     text-align: left;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
