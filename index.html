@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revision Marketing - Partiels</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Revision Marketing">
+          <span class="brand-mark">M</span>
+          <span>
+            <strong>Revision Marketing</strong>
+            <small>Partiels</small>
+          </span>
+        </a>
+        <nav class="topnav" aria-label="Navigation principale">
+          <a href="#play">Quiz</a>
+          <a href="#training">Fiches</a>
+          <a href="#scores">Suivi</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="home">
+          <div class="hero-visual" aria-hidden="true">
+            <svg viewBox="0 0 620 360" role="img">
+              <defs>
+                <linearGradient id="poster" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#e6f4f1" />
+                  <stop offset="0.55" stop-color="#eef2f7" />
+                  <stop offset="1" stop-color="#dbeafe" />
+                </linearGradient>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#172026" flood-opacity=".28" />
+                </filter>
+              </defs>
+              <rect width="620" height="360" rx="22" fill="url(#poster)" />
+              <path d="M0 282c70-24 113-16 177-35 71-22 91-57 161-49 64 7 77 43 142 40 53-2 90-29 140-19v141H0z" fill="#ffffff" opacity=".78" />
+              <g filter="url(#shadow)">
+                <rect x="80" y="72" width="205" height="220" rx="14" fill="#ffffff" />
+                <rect x="340" y="64" width="190" height="228" rx="14" fill="#ffffff" />
+                <path d="M122 124h118M122 164h92M122 204h132M122 244h78" stroke="#1f2937" stroke-width="11" stroke-linecap="round" />
+                <rect x="382" y="212" width="22" height="44" rx="5" fill="#0f766e" />
+                <rect x="424" y="170" width="22" height="86" rx="5" fill="#2563eb" />
+                <rect x="466" y="130" width="22" height="126" rx="5" fill="#d97706" />
+                <path d="M374 115h118M374 146h86" stroke="#1f2937" stroke-width="10" stroke-linecap="round" />
+              </g>
+              <g fill="#1f2937" opacity=".55">
+                <circle cx="80" cy="54" r="8" />
+                <circle cx="544" cy="309" r="10" />
+                <circle cx="317" cy="51" r="6" />
+              </g>
+            </svg>
+          </div>
+          <div class="hero-copy">
+            <p class="eyebrow">Revision marketing operationnel</p>
+            <h1>Plateforme de revision marketing.</h1>
+            <p>
+              Un quiz structure a partir de l'ensemble du cours: QCM, vrai/faux, choix multiples,
+              indices et explications. Le mode cours complet parcourt toutes les notions importantes
+              du document.
+            </p>
+            <div class="hero-actions">
+              <button class="primary" data-start="complete">Commencer le cours complet</button>
+              <button class="secondary" data-start="flash">Session courte</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard" id="play">
+          <aside class="panel setup-panel" aria-labelledby="setup-title">
+            <h2 id="setup-title">Parametres</h2>
+            <label for="mode">Mode</label>
+            <select id="mode">
+              <option value="complete">Cours complet</option>
+              <option value="training">Entrainement par theme</option>
+              <option value="challenging">Choix multiples uniquement</option>
+              <option value="flash">Session courte</option>
+            </select>
+            <p class="field-help" id="modeHelp">Toutes les questions disponibles seront posees.</p>
+
+            <label for="theme">Theme</label>
+            <select id="theme">
+              <option value="all">Tout le cours</option>
+              <option value="Fondamentaux">Fondamentaux</option>
+              <option value="Experience">Experience client</option>
+              <option value="Parcours">Parcours client</option>
+              <option value="Fidelisation">Fidelisation</option>
+              <option value="Marque">Marque et Love Brand</option>
+            </select>
+
+            <label for="length">Nombre de questions</label>
+            <input id="length" type="range" min="5" max="104" value="40" />
+            <output id="lengthOutput" for="length">40</output>
+
+            <div class="toggle-row">
+              <input id="shuffle" type="checkbox" />
+              <label for="shuffle">Melanger les questions</label>
+            </div>
+
+            <button class="primary wide" id="startBtn">Demarrer la session</button>
+          </aside>
+
+          <section class="game-panel" aria-live="polite">
+            <div class="empty-state" id="emptyState">
+              <div class="stamp">Pret</div>
+              <h2>Selectionne un mode de revision.</h2>
+              <p>Le mode cours complet utilise toute la banque de questions et suit l'ensemble des notions du cours.</p>
+            </div>
+
+            <article class="question-card hidden" id="questionCard">
+              <div class="game-meta">
+                <span id="questionCounter">Question 1/15</span>
+                <span id="questionTheme">Theme</span>
+                <span id="questionType">QCM</span>
+              </div>
+              <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+              <h2 id="questionText"></h2>
+              <p id="answerInstruction" class="answer-instruction"></p>
+              <div id="answerArea" class="answer-area"></div>
+              <div class="hint-box hidden" id="hintBox"></div>
+              <div class="explanation hidden" id="explanation"></div>
+              <div class="game-actions">
+                <button class="secondary" id="hintBtn">Afficher un indice (-2 pts)</button>
+                <button class="primary" id="submitBtn">Valider</button>
+                <button class="primary hidden" id="nextBtn">Question suivante</button>
+              </div>
+            </article>
+          </section>
+
+          <aside class="panel score-panel" id="liveScore" aria-labelledby="score-title">
+            <h2 id="score-title">Tableau de bord</h2>
+            <dl class="score-grid">
+              <div><dt>Score</dt><dd id="score">0</dd></div>
+              <div><dt>Suite</dt><dd id="streak">0</dd></div>
+              <div><dt>Precision</dt><dd id="accuracy">0%</dd></div>
+              <div><dt>Meilleur</dt><dd id="bestScore">0</dd></div>
+            </dl>
+            <div class="rank" id="rank">Niveau: a evaluer</div>
+            <h3>Progression par theme</h3>
+            <div class="theme-bars" id="themeBars"></div>
+          </aside>
+        </section>
+
+        <section class="tracking" id="scores" aria-labelledby="tracking-title">
+          <div class="section-heading">
+            <p class="eyebrow">Suivi de progression</p>
+            <h2 id="tracking-title">Tableau de progression</h2>
+            <p>Les resultats sont sauvegardes dans ce navigateur apres chaque session terminee.</p>
+          </div>
+
+          <div class="tracking-hero">
+            <div class="progress-orb" id="progressOrb">
+              <span id="overallAccuracy">0%</span>
+              <small>precision globale</small>
+            </div>
+            <div class="tracking-summary">
+              <span class="status-pill" id="trackingLevel">Niveau: a evaluer</span>
+              <h3 id="trackingHeadline">Aucune session terminee pour le moment.</h3>
+              <p id="trackingInsight">Termine un quiz pour debloquer les statistiques globales, les themes forts et les priorites de revision.</p>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Sessions</span>
+              <strong id="totalSessions">0</strong>
+            </article>
+            <article class="metric-card">
+              <span>Questions traitees</span>
+              <strong id="totalAnswered">0</strong>
+            </article>
+            <article class="metric-card">
+              <span>Meilleur score</span>
+              <strong id="trackingBestScore">0</strong>
+            </article>
+            <article class="metric-card">
+              <span>Theme prioritaire</span>
+              <strong id="priorityTheme">-</strong>
+            </article>
+          </div>
+
+          <div class="tracking-layout">
+            <article class="tracking-card">
+              <div class="card-heading">
+                <h3>Progression par theme</h3>
+                <span id="themeCoverage">0 theme</span>
+              </div>
+              <div class="tracking-theme-list" id="trackingThemeList"></div>
+            </article>
+
+            <article class="tracking-card">
+              <div class="card-heading">
+                <h3>Dernieres sessions</h3>
+                <span id="sessionCountLabel">0 session</span>
+              </div>
+              <div class="session-history" id="sessionHistory"></div>
+            </article>
+
+            <article class="tracking-card tracking-card-wide">
+              <div class="card-heading">
+                <h3>Plan de revision recommande</h3>
+                <button class="secondary compact" id="resetProgressBtn" type="button">Reinitialiser</button>
+              </div>
+              <div class="recommendations" id="recommendations"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="revision" id="training">
+          <div>
+            <p class="eyebrow">Synthese du cours</p>
+            <h2>Fiches de revision</h2>
+          </div>
+          <div class="revision-grid" id="revisionGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="choiceTemplate">
+      <button class="choice" type="button"></button>
+    </template>
+
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
